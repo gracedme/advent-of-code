@@ -1,17 +1,27 @@
-const countFloors = require('./day01');
+const countFloors = require('./day01-1');
+const findFirstBasement = require('./day01-2');
 
-test("go up one floor for (", () => {
-   expect(countFloors("(((")).toBe(3);
+describe("part one: countFloors(input)", () => {
+    test("go up one floor for (", () => {
+        expect(countFloors("(((")).toBe(3);
+    });
+
+    test("go down one floor for )", () => {
+        expect(countFloors(")))))")).toBe(-5);
+    });
+
+    test("mixed ( and ) calculate the 10th floor", () => {
+        expect(countFloors("((()((()((()((()((()")).toBe(10);
+    });
+
+    test("equal ( and ) returns ground floor 0", () => {
+        expect(countFloors(")))(()))((((")).toBe(0);
+    });
 });
 
-test("go down one floor for )", () => {
-   expect(countFloors(")))))")).toBe(-5);
-});
-
-test("mixed ( and ) calculate the 10th floor", () => {
-    expect(countFloors("((()((()((()((()((()")).toBe(10);
-});
-
-test("equal ( and ) returns ground floor 0", () => {
-    expect(countFloors(")))(()))((((")).toBe(0);
-});
+describe("part two: findFirstBasement(input)", () => {
+    test("returns location of first sum that equals floor -1 (basement)", () => {
+        expect(findFirstBasement(")")).toBe(1);
+        expect(findFirstBasement("()())")).toBe(5);
+    })
+})
