@@ -1,8 +1,6 @@
 const fs = require('fs');
 
-const filename = process.argv[2];
-
-const stream = fs.createReadStream(filename);
+const stream = fs.createReadStream(`input.txt`);
 stream.setEncoding('utf8');
 stream.on("data", getTotalWrappingPaper);
 
@@ -11,7 +9,7 @@ function getTotalWrappingPaper(input) {
     let totalPaper = 0;
 
     // for each line, get wrapping paper area
-    toys.forEach((val, ix) => {
+    toys.forEach(val => {
         // split line into length, width, height
         const dimensions = val.split('x');
 

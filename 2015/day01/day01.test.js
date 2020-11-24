@@ -1,5 +1,5 @@
-const countFloors = require('./day01-1');
-const findFirstBasement = require('./day01-2');
+const countFloors = require('./one');
+const findFirstBasement = require('./two');
 
 describe("part one: countFloors(input)", () => {
     test("go up one floor for (", () => {

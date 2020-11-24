@@ -1,8 +1,6 @@
 const fs = require('fs');
 
-const filename = process.argv[2];
-
-const stream = fs.createReadStream(filename);
+const stream = fs.createReadStream(`input.txt`);
 stream.setEncoding('utf8');
 stream.on("data", countFloors);
 
