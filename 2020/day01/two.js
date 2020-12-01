@@ -13,11 +13,13 @@ function fn(input) {
   let total = 0;
   let found = false;
   for (let ix = 0; !found && ix < lines.length; ix++) {
-    const diff = 2020 - lines[ix];
-    found = lines.includes(diff);
-    if (found) {
-      total = lines[ix] * diff;
-      console.log(lines[ix], diff);
+    for (let jx = ix + 1; !found && jx < lines.length; jx++) {
+      const diff = 2020 - lines[ix] - lines[jx];
+      found = lines.includes(diff);
+      if (found) {
+        total = lines[ix] * lines[jx] * diff;
+        console.log(lines[ix], lines[jx], diff);
+      }
     }
   }
 
