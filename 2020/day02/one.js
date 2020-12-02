@@ -19,9 +19,7 @@ function fn(input) {
   })
 
   console.log(validPasswords.length);
-
   return validPasswords.length;
-
 }
 
 module.exports = fn;
