@@ -21,16 +21,18 @@ module.exports = fn;
 const one = require('./one');
 const two = require('./two');
 
+const input = "";
+
 describe("day ", () => {
   describe("part 1", () => {
     test("puzzle examples", () => {
-      expect(one("")).toBe();
+      expect(one(input)).toBe();
     })
   });
 
   describe("part 2", () => {
     test("puzzle examples", () => {
-      expect(two("")).toBe();
+      expect(two(input)).toBe();
     })
   })
 });
