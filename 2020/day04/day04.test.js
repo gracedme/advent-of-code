@@ -1100,6 +1100,7 @@ byr:2007
 pid:176cm ecl:#927fbf iyr:2006`;
 
       expect(one(invalidInput)).toBe(0);
+
     })
   });
 
