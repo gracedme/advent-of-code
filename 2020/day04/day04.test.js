@@ -1,7 +1,7 @@
 const one = require('./one');
 const two = require('./two');
 
-const input = `byr:2010 pid:#1bb4d8 eyr:2021 hgt:186cm iyr:2020 ecl:grt
+const actualInput = `byr:2010 pid:#1bb4d8 eyr:2021 hgt:186cm iyr:2020 ecl:grt
 
 pid:937877382 eyr:2029
 ecl:amb hgt:187cm iyr:2019
@@ -1071,7 +1071,10 @@ ecl:gry
 hcl:#a97842
 eyr:2028`;
 
-const invalidInput = `eyr:2027 hcl:#efcc98 iyr:2020 ecl:amb cid:111
+describe("day 04", () => {
+  describe("part 1", () => {
+    test("puzzle examples", () => {
+      const invalidInput = `eyr:2027 hcl:#efcc98 iyr:2020 ecl:amb cid:111
 pid:143966954
 hgt:165cm
 
@@ -1096,16 +1099,58 @@ eyr:2035 cid:226 hcl:64ac73
 byr:2007
 pid:176cm ecl:#927fbf iyr:2006`;
 
-describe("day 04", () => {
-  describe("part 1", () => {
-    test("puzzle examples", () => {
-      expect(one(input)).toBe(0);
+      expect(one(invalidInput)).toBe(0);
+
     })
   });
 
   describe("part 2", () => {
     test("puzzle examples", () => {
-      //expect(two(input)).toBe(0);
+      const invalidInput = [
+        // invalid byr
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:1916`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:2003`,
+        // invalid eyr
+        `eyr:1976 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:1950`,
+        `eyr:2035 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:1950`,
+        // invalid iyr
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2008 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2021 byr:1950`,
+        // invalid ecl
+        `eyr:2025 cid:100 hcl:#18171d ecl:bam hgt:170cm pid:000000001 iyr:2015 byr:1950`,
+        // invalid hcl
+        `eyr:2025 cid:100 hcl:18171d ecl:amb hgt:170cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171g ecl:amb hgt:170cm pid:000000001 iyr:2015 byr:1950`,
+        // invalid hgt
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:140cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:194cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:40in pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170in pid:000000001 iyr:2015 byr:1950`,
+        // invalid pid
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:00000001 iyr:2018 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:0123456789 iyr:2018 byr:1950`,
+      ].join('\n\n');
+      const validInput = [
+        `eyr:2025 cid:100\nhcl:#18171d ecl:amb hgt:170cm\npid:000000001 iyr:2018 byr:1920`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:2002`,
+        `eyr:2020 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:1950`,
+        `eyr:2030 cid:100 hcl:#18171d ecl:amb\nhgt:170cm pid:000000001\niyr:2018 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2010 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb\nhgt:170cm pid:000000001 iyr:2020 byr:1950`,
+        `eyr:2025 cid:100\nhcl:#18171d\necl:hzl hgt:170cm pid:000000001\niyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#1234ab ecl:amb hgt:170cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#abc46f ecl:amb hgt:170cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:150cm pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100\nhcl:#18171d ecl:amb hgt:193cm pid:000000001\niyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:59in pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:76in pid:000000001 iyr:2015 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:000000001 iyr:2018 byr:1950`,
+        `eyr:2025 cid:100 hcl:#18171d ecl:amb hgt:170cm pid:012345678 iyr:2018 byr:1950`,
+      ].join('\n\n');
+
+      expect(two(invalidInput)).toBe(0);
+      expect(two(validInput)).toBe(15);
+      expect(two(actualInput)).toBe(0);
     })
   })
 });
