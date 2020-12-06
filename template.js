@@ -1,8 +1,12 @@
 const fs = require('fs');
 
-const stream = fs.createReadStream(__dirname + `/input.txt`);
-stream.setEncoding('utf8');
-stream.on("data", fn);
+const filename = process.argv[2]
+
+if (filename) {
+  const stream = fs.createReadStream(__dirname + `/${filename}`);
+  stream.setEncoding('utf8');
+  stream.on("data", fn);
+}
 
 function fn(input) {
   const lines = input.split('\n');
@@ -21,18 +25,18 @@ module.exports = fn;
 const one = require('./one');
 const two = require('./two');
 
-const input = "";
+const actualInput = ``;
 
 describe("day ", () => {
   describe("part 1", () => {
     test("puzzle examples", () => {
-      expect(one(input)).toBe();
+      expect(one(actualInput)).toBe();
     })
   });
 
   describe("part 2", () => {
     test("puzzle examples", () => {
-      expect(two(input)).toBe();
+      // expect(two(actualInput)).toBe();
     })
   })
 });
