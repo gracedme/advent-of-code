@@ -826,7 +826,7 @@ describe("day 05", () => {
     })
 
     test("max ID of puzzle examples", () => {
-      expect(one(Object.keys(boardingPasses).join('\n\n'))).toBe(820);
+      expect(one(Object.keys(boardingPasses).join('\n'))).toBe(820);
     })
 
     test("actual input", () => {
@@ -835,8 +835,19 @@ describe("day 05", () => {
   });
 
   describe("part 2", () => {
-    test("puzzle examples", () => {
-      // expect(two(actualInput)).toBe();
+    test("find middle Id", () => {
+      const boardingPasses = {
+        'FBFBBFFRLL': 356,
+        'FBFBBFFRLR': 357,
+        'FBFBBFFRRR': 359,
+        'FBFBBFBLLL': 360
+      };
+
+      expect(two(Object.keys(boardingPasses).join('\n'))).toBe(358);
+    })
+
+    test("actual input", () => {
+      expect(two(actualInput)).toBe(705);
     })
   })
 });
