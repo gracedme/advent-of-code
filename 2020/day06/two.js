@@ -9,10 +9,21 @@ if (filename) {
 }
 
 function fn(input) {
-  const lines = input.split('\n');
-  let result = 0;
+  const groups = input.split('\n\n')
+  let sumOfGroupYesCount = 0;
 
-  return result;
+  for (let ix = 0; ix < groups.length; ix++) {
+    const people = groups[ix].split('\n');
+    const chars = people.join('').split('').sort(); // lol
+    const wholeGroupResponded = chars.filter((ch, i, self) => {
+      return self[i + people.length - 1] && self[i] === self[i + people.length - 1]
+    })
+
+    sumOfGroupYesCount += wholeGroupResponded.length;
+  }
+
+  console.log(`sum of all group totals: ${sumOfGroupYesCount}`)
+  return sumOfGroupYesCount;
 }
 
 module.exports = fn;
