@@ -9,10 +9,18 @@ if (filename) {
 }
 
 function fn(input) {
-  const lines = input.split('\n');
-  let result = 0;
+  const groups = input.split('\n\n')
+  let sumOfGroupYesCount = 0;
 
-  return result;
+  for (let ix = 0; ix < groups.length; ix++) {
+    const chars = groups[ix].split('\n').join('').split(''); // lol
+    const unique = [...new Set(chars)];
+
+    sumOfGroupYesCount += unique.length;
+  }
+
+  console.log(`sum of all group totals: ${sumOfGroupYesCount}`)
+  return sumOfGroupYesCount;
 }
 
 module.exports = fn;

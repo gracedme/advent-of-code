@@ -1,4 +1,4 @@
-zvxc
+const ACTUAL_INPUT = `zvxc
 dv
 vh
 xv
@@ -2196,4 +2196,6 @@ iqdrfstyjgabzenpvckomu
 kzardg
 dkzgura
 zdagrk
-gdrakz
+gdrakz`;
+
+module.exports = ACTUAL_INPUT;
