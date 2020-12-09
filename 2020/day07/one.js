@@ -10,16 +10,15 @@ if (filename) {
 
 function fn(input) {
   const lines = input.split('\n');
-  let result = 0;
 
-  let map = {};
+  let luggageMap = {};
   lines.forEach(line => {
     const matches = line.match(/(\w+ \w+) bags contain (no other bags|(?:\d+ \w+ \w+ bags?,? ?)+)./);
     const bag = matches[1];
     const sources = matches[2].split(', ');
 
-    map[bag] = sources.reduce((acc, item) =>{
-      if (item === "no other bags") return 0;
+    luggageMap[bag] = sources.reduce((acc, item) =>{
+      if (item === "no other bags") return {};
       const details = item.split(' ');
 
       return {
@@ -28,17 +27,23 @@ function fn(input) {
       }
     }, {});
   });
-  console.log(map);
 
-  function containsColour(queryColour, colour) {
-    if (colour === queryColour) return true;
-    if (!map.has(queryColour)) return false;
+  let shinyGoldContainers = new Set();
+  let lookFor = "shiny gold";
+  const queue = [lookFor];
 
-    const something = map[queryColour];
-    console.log(something);
+  while (queue.length) {
+    const lookForBag = queue.shift();
+    for (let colour in luggageMap) {
+      if (luggageMap[colour].hasOwnProperty(lookForBag)) {
+        shinyGoldContainers.add(colour);
+        if (!queue.includes(colour)) queue.push(colour);
+      }
+    }
   }
 
-  return result;
+  console.log("containers", shinyGoldContainers);
+  return shinyGoldContainers.size;
 }
 
 module.exports = fn;

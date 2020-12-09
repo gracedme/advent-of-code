@@ -1,18 +1,18 @@
 const one = require('./one');
 const two = require('./two');
+const ACTUAL_INPUT = require('./input');
 
-const actualInput = ``;
 
 describe("day ", () => {
   describe("part 1", () => {
     test("actual input", () => {
-      // expect(one(actualInput)).toBe();
+      // expect(one(ACTUAL_INPUT)).toBe();
     })
   });
 
   describe("part 2", () => {
     test("actual input", () => {
-      // expect(two(actualInput)).toBe();
+      // expect(two(ACTUAL_INPUT)).toBe();
     })
   })
 });
