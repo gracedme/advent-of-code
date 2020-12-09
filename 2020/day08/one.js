@@ -27,7 +27,7 @@ function fn(input) {
     }
   }
 
-  console.log("final accumulator before infinite loop", accumulator);
+  console.log("final accumulator before infinite loop:", accumulator);
   return accumulator;
 }
 

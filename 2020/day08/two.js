@@ -9,10 +9,26 @@ if (filename) {
 }
 
 function fn(input) {
-  const lines = input.split('\n');
-  let result = 0;
+  const instructions = input.split('\n');
+  let accumulator = 0;
+  let visitedAddresses = [];
+  let ix = 0;
 
-  return result;
+  while (!visitedAddresses.includes(ix)) {
+    const [op, num] = instructions[ix].split(' ');
+    const arg = parseInt(num);
+    visitedAddresses.push(ix);
+
+    if (op === 'nop') ix++;
+    if (op === 'jmp') ix += arg;
+    if (op === 'acc') {
+      accumulator += arg;
+      ix++;
+    }
+  }
+
+  console.log("final accumulator before infinite loop:", accumulator);
+  return accumulator;
 }
 
 module.exports = fn;
