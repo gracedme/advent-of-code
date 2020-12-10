@@ -12,18 +12,17 @@ function fn(input) {
   const instructions = input.split('\n');
   let accumulator = 0;
   let visitedAddresses = [];
-  let ix = 0;
+  let cursorPosition = 0;
 
-  while (!visitedAddresses.includes(ix)) {
-    const [op, num] = instructions[ix].split(' ');
-    const arg = parseInt(num);
-    visitedAddresses.push(ix);
+  while (!visitedAddresses.includes(cursorPosition)) {
+    const [op, num] = instructions[cursorPosition].split(' ');
+    visitedAddresses.push(cursorPosition);
 
-    if (op === 'nop') ix++;
-    if (op === 'jmp') ix += arg;
+    if (op === 'nop') cursorPosition++;
+    if (op === 'jmp') cursorPosition += parseInt(num);
     if (op === 'acc') {
-      accumulator += arg;
-      ix++;
+      accumulator += parseInt(num);
+      cursorPosition++;
     }
   }
 
