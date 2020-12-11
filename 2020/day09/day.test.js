@@ -2,7 +2,6 @@ const one = require('./one');
 const two = require('./two');
 const ACTUAL_INPUT = require('./input');
 
-
 describe("day 09", () => {
   const testPreamble = 5;
   const testInput = `35
@@ -36,8 +35,12 @@ describe("day 09", () => {
   });
 
   describe("part 2", () => {
+    test("test input", () => {
+      expect(two(testInput, 127)).toBe(62);
+    })
+
     test("actual input", () => {
-      // expect(two(ACTUAL_INPUT)).toBe();
+      expect(two(ACTUAL_INPUT, 25918798)).toBe(3340942);
     })
   })
 });
