@@ -3,7 +3,7 @@ const two = require('./two');
 const ACTUAL_INPUT = require('./input');
 
 
-describe("day ", () => {
+describe("day 10", () => {
   const smallTestInput = `16
 10
 15
@@ -49,11 +49,11 @@ describe("day ", () => {
 3`;
 
   describe("part 1", () => {
-    test("test input", () => {
+    test("small test input", () => {
       expect(one(smallTestInput)).toStrictEqual({ ones: 7, threes: 5 });
     })
 
-    test("test input", () => {
+    test("larger test input", () => {
       expect(one(largeTestInput)).toStrictEqual({ ones: 22, threes: 10 });
     })
 
@@ -63,12 +63,16 @@ describe("day ", () => {
   });
 
   describe("part 2", () => {
-    test("test input", () => {
-      // expect(two(testInput)).toBe();
+    test("small test input", () => {
+      expect(two(smallTestInput)).toBe(8);
+    })
+
+    test("larger test input", () => {
+      expect(two(largeTestInput)).toBe(19208);
     })
 
     test("actual input", () => {
-      // expect(two(ACTUAL_INPUT)).toBe();
+      expect(two(ACTUAL_INPUT)).toBe(37024595836928);
     })
   })
 });
