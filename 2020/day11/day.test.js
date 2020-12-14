@@ -2,7 +2,6 @@ const one = require('./one');
 const two = require('./two');
 const ACTUAL_INPUT = require('./input');
 
-
 describe("day 11", () => {
   const testInput = `L.LL.LL.LL
 LLLLLLL.LL
@@ -26,11 +25,11 @@ L.LLLLL.LL`;
 
   describe("part 2", () => {
     test("test input", () => {
-      // expect(two(testInput)).toBe();
+      expect(two(testInput)).toBe(26);
     })
 
     test("actual input", () => {
-      // expect(two(ACTUAL_INPUT)).toBe();
+      expect(two(ACTUAL_INPUT)).toBe(2027); // 1973 is too low
     })
   })
 });

@@ -36,7 +36,7 @@ function fn(input) {
   }
 
   let totalOccupiedSeats = 0;
-  let lastTotal = 1000; // some value other than initialized zero
+  let lastTotal = -1; // some value other than initialized zero, not being picky here
 
   let grid = rfdc(lines);
   let nextGrid = rfdc(lines);
@@ -44,8 +44,9 @@ function fn(input) {
   while (lastTotal !== totalOccupiedSeats) {
     lastTotal = totalOccupiedSeats;
     totalOccupiedSeats = 0;
+
     grid.forEach((row, rowIx) => {
-      let nextRow = [];
+      const nextRow = [];
       for (let colIx = 0; colIx < width; colIx++) {
         const adjacentOccupied = adjacentSeats(rowIx, colIx, grid);
         let nextSeatState = grid[rowIx][colIx];
