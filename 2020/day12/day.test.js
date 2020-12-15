@@ -16,7 +16,7 @@ F11`;
     })
 
     test("actual input", () => {
-       expect(one(ACTUAL_INPUT)).toBe(0);
+       expect(one(ACTUAL_INPUT)).toBe(582);
        // 1400: too high
        // 375: too low
     })
