@@ -53,7 +53,10 @@ function fn(input) {
   }
 
   const turn = (dir, degrees, oldDir) => {
-    const newDegrees = (DIRECTIONS[oldDir] + degrees) % 360;
+    const newDegrees = dir === 'R'
+      ? (DIRECTIONS[oldDir] + degrees) % 360
+      : (DIRECTIONS[oldDir] - degrees + 360)  % 360;
+
     return DEGREES[newDegrees];
   }
 

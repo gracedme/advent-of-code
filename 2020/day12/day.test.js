@@ -9,6 +9,7 @@ N3
 F7
 R90
 F11`;
+
   describe("part 1", () => {
     test("test input", () => {
       expect(one(testInput)).toBe(25);
@@ -17,6 +18,7 @@ F11`;
     test("actual input", () => {
        expect(one(ACTUAL_INPUT)).toBe(0);
        // 1400: too high
+       // 375: too low
     })
   });
 
