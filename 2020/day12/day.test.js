@@ -24,7 +24,7 @@ F11`;
 
   describe("part 2", () => {
     test("test input", () => {
-      // expect(two(testInput)).toBe();
+      expect(two(testInput)).toBe(286);
     })
 
     test("actual input", () => {
