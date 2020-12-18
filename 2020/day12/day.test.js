@@ -28,7 +28,8 @@ F11`;
     })
 
     test("actual input", () => {
-      // expect(two(ACTUAL_INPUT)).toBe();
+      expect(two(ACTUAL_INPUT)).toBe(52069);
+      // 258101 too high
     })
   })
 });
