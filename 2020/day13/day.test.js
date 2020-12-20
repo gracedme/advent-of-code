@@ -15,7 +15,7 @@ describe("day ", () => {
     })
 
     test("actual input", () => {
-      // expect(one(ACTUAL_INPUT)).toBe();
+      expect(one(ACTUAL_INPUT)).toBe(3215);
     })
   });
 

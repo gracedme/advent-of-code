@@ -14,18 +14,19 @@ function fn(input) {
   const BUSES = lines[1].split(',').filter(b => b !== 'x')
 
   console.log(TIME, BUSES);
-  let result = 0;
-  let firstBus = 0;
-  let diff = TIME % firstBus;
-  result = firstBus * diff;
+  let bestBus = 0;
+  let diff = 1000;
 
   BUSES.forEach(b => {
-    const d = TIME % b;
+    const d = b - TIME % b;
+
+    if (d < diff) {
+      bestBus = b;
+      diff = d;
+    }
   })
 
-
-
-  return result;
+  return diff * bestBus;
 }
 
 module.exports = fn;
