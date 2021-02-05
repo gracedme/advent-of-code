@@ -44,6 +44,7 @@ function fn(input) {
   // on the assumption that the same memory addresses may be re-written with this program,
   // loop through the memory addresses and sum the decimal values
   Object.values(memory).forEach(v => { checksum += v; })
+  console.log(`checksum: ${checksum}`);
 
   return checksum;
 }
