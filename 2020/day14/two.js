@@ -8,25 +8,44 @@ if (filename) {
   stream.on("data", fn);
 }
 
-function TreeNode(value) {
-  this.value = value;
+function Node(data) {
+  this.data = data;
   this.children = [];
-}
 
-function Tree() {
-  this._root = null;
-}
-
-// pre-order recursive DFS
-Tree.prototype.traverse = () => {
-  helper(this._root);
-
-  function helper(node) {
-    if (!node) return;
-
-    console.log(node.value);
-    node.children.forEach(n => helper(n));
+  this.addChild = (node) => {
+    this.children[this.children.length] = node;
   }
+
+  this.getChildren = () => this.children;
+}
+
+function generateTree(mask, node) {
+  // console.log(mask, node);
+  if (mask.length > 0) {
+    if (mask[0] === 'X') {
+      // branch X into two nodes
+      node.addChild(new Node(0));
+      node.addChild(new Node(1));
+    } else {
+      // no branching
+      node.addChild(new Node(mask[0]));
+    }
+
+    node.getChildren().forEach(child => generateTree(mask.substr(1), child));
+  }
+}
+
+function getAddresses(node, address = '') {
+    address += node.data;
+    const addresses = [];
+
+    if (node.children.length === 0) {
+      addresses.push(address);
+    } else {
+      node.getChildren().forEach(child => addresses.push(...getAddresses(child, address)))
+    }
+
+    return addresses;
 }
 
 function fn(input) {
@@ -37,21 +56,6 @@ function fn(input) {
   let memory = {};
   const bitMaskRegex = /mask = ([01X]+)/;
   const memoryRegex = /mem\[(\d+)\] = (\d+)/;
-
-  const generateTree = (address, node) => {
-    console.log(address);
-
-    if (address[0] === 'X') {
-      node.children.push(new TreeNode(0));
-      node.children.push(new TreeNode(1));
-    } else{
-      node.children.push(new TreeNode(address[0]));
-    }
-
-    if (address.length > 1) {
-      node.children.forEach(child => generateTree(address.substr(1), child));
-    }
-  }
 
   lines.forEach(line => {
     // check for bitmask or memory address line
@@ -67,16 +71,14 @@ function fn(input) {
         .padStart(36, '0')
         .split(''); // split into character array
 
-      const root = new TreeNode(0);
-      generateTree(bitmask, root);
+      const root = new Node(bitmask[0]);
+      generateTree(bitmask.substr(1), root);
 
-
-      // join the char array into a string, convert to decimal, save to memory
-      memory[address] = parseInt(value.join(''), 2);
+      const adds = getAddresses(root);
+      console.log(adds);
     }
   })
 
-  Object.values(memory).forEach(v => { checksum += v; })
   console.log(`checksum: ${checksum}`);
 
   return checksum;

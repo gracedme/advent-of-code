@@ -20,7 +20,7 @@ mem[8] = 0`;
 
   describe("part 2", () => {
     test("test input", () => {
-      const smolInput = `mask = 00X1001X
+      const smolInput = `mask = 0XXX
 mem[42] = 100`;
       const testInput = `mask = 000000000000000000000000000000X1001X
 mem[42] = 100
