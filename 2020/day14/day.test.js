@@ -20,17 +20,15 @@ mem[8] = 0`;
 
   describe("part 2", () => {
     test("test input", () => {
-      const smolInput = `mask = 0XXX
-mem[42] = 100`;
       const testInput = `mask = 000000000000000000000000000000X1001X
 mem[42] = 100
 mask = 00000000000000000000000000000000X0XX
 mem[26] = 1`;
-      expect(two(smolInput)).toBe(208);
+      expect(two(testInput)).toBe(208);
     })
 
     test("actual input", () => {
-      // expect(two(ACTUAL_INPUT)).toBe();
+      expect(two(ACTUAL_INPUT)).toBe(4335927555692);
     })
   })
 });

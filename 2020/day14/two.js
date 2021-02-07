@@ -48,6 +48,17 @@ function getAddresses(node, address = '') {
     return addresses;
 }
 
+function getFloatingAddress(mask, address) {
+  const a = parseInt(address).toString(2).padStart(36, "0").split('');
+  return a.map((ch, ix) => {
+    return mask[ix] === '0'
+      ? ch
+      : mask[ix] === '1'
+        ? '1'
+        : 'X'
+  } ).join('');
+}
+
 function fn(input) {
   const lines = input.split('\n');
   let checksum = 0;
@@ -66,19 +77,16 @@ function fn(input) {
       // parse both the memory address and the value to be written to that address
       const matches = line.match(memoryRegex);
       const address = matches[1];
-      let value = parseInt(matches[2])
-        .toString(2) // convert the value to binary string
-        .padStart(36, '0')
-        .split(''); // split into character array
+      const floatingAddress = getFloatingAddress(bitmask, address);
 
-      const root = new Node(bitmask[0]);
-      generateTree(bitmask.substr(1), root);
-
-      const adds = getAddresses(root);
-      console.log(adds);
+      const root = new Node('');
+      generateTree(floatingAddress, root);
+      getAddresses(root).forEach(a => {
+        memory[a] = parseInt(matches[2]);
+      })
     }
   })
-
+  Object.values(memory).forEach(v => { checksum += v; })
   console.log(`checksum: ${checksum}`);
 
   return checksum;
